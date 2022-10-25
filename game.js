@@ -15,8 +15,17 @@ $(document).on("keypress", function() {
   }
 })
 
+//For mobile only.
+$("#level-title").on("touchend", function() {
+  if (!started) {
+    $("#level-title").text("Level " + level);
+    nextSequence();
+    started = true;
+  }
+})
+
 $(".btn").on("click", function() {
-  var userChosenColor = $(this).attr("id"); //Add a function statement called "event" and calling event.currentTarget.id also works.
+  var userChosenColor = $(this).attr("id"); 
   userClickedPattern.push(userChosenColor);
   playSound(userChosenColor);
   animatePress(userChosenColor);
@@ -60,7 +69,7 @@ function playSound(name) {
 }
 
 function animatePress(currentColor) {
-  $("#" + currentColor).addClass("pressed"); //You can also add the first part to a let, and then use the let instead of repeating the JQuery.
+  $("#" + currentColor).addClass("pressed"); 
   setTimeout(function() {
     $("#" + currentColor).removeClass("pressed");
   }, 100)
